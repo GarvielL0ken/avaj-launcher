@@ -1,4 +1,4 @@
-package aircraftfactory;
+package aircraft;
 
 import coordinates.Coordinates;
 import flyable.Flyable;
