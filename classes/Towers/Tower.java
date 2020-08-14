@@ -8,11 +8,11 @@ public class Tower {
 	observers = new LinkedList<Object>();
 
 	public register(Flyable flyable) {
-		System.out.println("REGISTER");
+		observers.add(flyable);
 	}
 
 	public unregister(Flyable flyable) {
-		System.out.println("UNREGISTER");
+		observers.remove(flyable);
 	}
 
 	protected conditionsChanged() {

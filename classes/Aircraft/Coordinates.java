@@ -22,4 +22,10 @@ public class Coordinates {
 	public int getLongitude() {
 		return (this.longitude);
 	}
+
+	public int setCoordinates(int height, int latitude, int longitude) {
+		this.height = height - ((height - 100) * (height > 100));
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
 }
