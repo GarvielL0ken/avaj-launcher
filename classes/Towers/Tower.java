@@ -16,6 +16,9 @@ public class Tower {
 	}
 
 	protected conditionsChanged() {
+		for (Iterator observer = observers.iterator(); observer.hasNext();) {
+			observer.updateConditions();
+		}
 		System.out.println("CONDITONS CHANGED");
 	}
 }

@@ -1,15 +1,15 @@
 package towers;
 
 import coordinates.Coordinates;
+import weatherprovider.WeatherProvider;
 
 public class WeatherTower extends Tower {
 
 	public String getWeather(Coordinates coordinates) {
-		System.out.println("GET WEATHER");
-		return (weather);
+		return (WeatherProvider.getProvider().getCurrentWeather(coordinates));
 	}
 
 	changeWeather() {
-		System.out.println("CHANGE WEATHER");
+		this.conditionsChanged();
 	}
 }
