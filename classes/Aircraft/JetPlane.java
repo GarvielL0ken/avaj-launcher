@@ -11,28 +11,33 @@ public class JetPlane extends Aircraft implements Flyable {
 		super(name, coordinates);
 	}
 
-	public updateConditions() {
+	public void updateConditions() {
 		String	weather;
 		int		height;
 		int		latitude;
 		int		longitude;
+		int		flag;
 
 		weather = this.weatherTower.getCurrentWeather(this.coordinates);
-		height = this.coordinates.getHeight()
-		latitude = this.coordinates.getLatitude()
-		longitude = this.coordinates.getLongitude()
+		height = this.coordinates.getHeight();
+		latitude = this.coordinates.getLatitude();
+		longitude = this.coordinates.getLongitude();
 
-		latitude +=  1 * (weather.equals('FOG'));
-		latitude +=  5 * (weather.equals('RAIN'));
-		height -= 7 * (weather.equals('SNOW'));
+		flag = (weather.equals("FOG")) ? 1 : 0;
+		latitude +=  1 * flag;
+		flag = (weather.equals("RAIN")) ? 1 : 0;
+		latitude +=  5 * flag;
+		flag = (weather.equals("SNOW")) ? 1 : 0;
+		height -= 7 * flag;
 
-		height += 2 * (weather.equals('SUN'));
-		latitude += 10 * (weather.equals('SUN'));
+		flag = (weather.equals("SUN")) ? 1 : 0;
+		height += 2 * flag;
+		latitude += 10 * flag;
 
 		this.coordinates.setCoordinates(height, latitude, longitude);
 	}
 
-	public registerTower(WeatherTower weatherTower) {
+	public void registerTower(WeatherTower weatherTower) {
 		this.weatherTower = weatherTower;
 	}
 }

@@ -24,7 +24,10 @@ public class Coordinates {
 	}
 
 	public int setCoordinates(int height, int latitude, int longitude) {
-		this.height = height - ((height - 100) * (height > 100));
+		int		flag;
+
+		flag = (height > 100) ? 1 : 0;
+		this.height = height - ((height - 100) * flag);
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}

@@ -11,28 +11,34 @@ public class Baloon extends Aircraft implements Flyable {
 		super(name, coordinates);
 	}
 
-	public updateConditions() {
+	public void updateConditions() {
 		String	weather;
 		int		height;
 		int		latitude;
 		int		longitude;
+		int		flag;
 
 		weather = this.weatherTower.getCurrentWeather(this.coordinates);
-		height = this.coordinates.getHeight()
-		latitude = this.coordinates.getLatitude()
-		longitude = this.coordinates.getLongitude()
+		height = this.coordinates.getHeight();
+		latitude = this.coordinates.getLatitude();
+		longitude = this.coordinates.getLongitude();
 
-		height -=  3 * (weather.equals('FOG'));
-		height -=  5 * (weather.equals('RAIN'));
-		height -= 15 * (weather.equals('SNOW'));
+		flag = (weather.equals("FOG")) ? 1 : 0;
+		height -=  3 * flag;
+		flag = (weather.equals("RAIN")) ? 1 : 0;
+		height -=  5 * flag;
+		flag = (weather.equals("SNOW")) ? 1 : 0;
+		height -= 15 * flag;
 
-		height +=  4 * (weather.equals('SUN'));
-		longitude += 2 * (weather.equals('SUN'));
+		flag = (weather.equals("SUN")) ? 1 : 0;
+		height +=  4 * flag;
+		longitude += 2 * flag;
 
 		this.coordinates.setCoordinates(height, latitude, longitude);
 	}
 
-	public registerTower(WeatherTower weatherTower) {
+	public void registerTower(WeatherTower weatherTower) {
 		this.weatherTower = weatherTower;
+		weatherTower.register(this);
 	}
 }
