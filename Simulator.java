@@ -3,10 +3,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import aircraft.AircraftFactory;
+import towers.WeatherTower;
 import flyable.Flyable;
 
 class Simulator {
-	private static	AircraftFactory aircraftFactory = new AircraftFactory();
+	private static AircraftFactory	aircraftFactory;
+	private static WeatherTower		weatherTower = new WeatherTower();
 
 	private String	args[];
 	private File	inputFile;
@@ -121,7 +123,8 @@ class Simulator {
 	private void new_aircraft() {
 		Flyable	flyable;
 
-		flyable = this.AircraftFactory.new_aircraft(this.parameters[0], this.parameters[1], this.height, this.latitude, this.longitude);
+		flyable = AircraftFactory.newAircraft(this.parameters[0], this.parameters[1], this.height, this.latitude, this.longitude);
+		flyable.registerTower(this.weatherTower);
 	}
 
 	public static void main(String args[]) {
