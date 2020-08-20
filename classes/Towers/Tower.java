@@ -27,6 +27,5 @@ public class Tower {
 		for (i = 0; i < observers.size(); i++) {
 			observers.get(i).updateConditions();
 		}
-		System.out.println("CONDITONS CHANGED");
 	}
 }

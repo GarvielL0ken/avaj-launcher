@@ -1,3 +1,5 @@
+package towers;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -70,7 +72,6 @@ class Simulator {
 				this.validate_line(line, line_number);
 				this.new_aircraft();
 				line_number++;
-				System.out.println(line);
 			}
 			inputScanner.close();
 		} catch (IOException error) {
@@ -127,6 +128,13 @@ class Simulator {
 		flyable.registerTower(this.weatherTower);
 	}
 
+	private void run() {
+		while (this.number_of_iterations > 0) {
+			this.weatherTower.changeWeather();
+			this.number_of_iterations--;
+		}
+	}
+
 	public static void main(String args[]) {
 		Simulator simulator = new Simulator(args);
 
@@ -134,6 +142,7 @@ class Simulator {
 		simulator.parse_arguments();
 		simulator.open_file();
 		simulator.read_file();
+		simulator.run();
 		//Run the simulation
 	}
 }
