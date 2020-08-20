@@ -1,4 +1,4 @@
-package coordinates;
+package aircraft;
 
 public class Coordinates {
 	private int	height;
@@ -23,7 +23,7 @@ public class Coordinates {
 		return (this.longitude);
 	}
 
-	public int setCoordinates(int height, int latitude, int longitude) {
+	public void setCoordinates(int height, int latitude, int longitude) {
 		int		flag;
 
 		flag = (height > 100) ? 1 : 0;

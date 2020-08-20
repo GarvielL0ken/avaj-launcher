@@ -1,6 +1,5 @@
 package aircraft;
 
-import coordinates.Coordinates;
 import flyable.Flyable;
 import towers.WeatherTower;
 
@@ -18,7 +17,7 @@ public class Helicopter extends Aircraft implements Flyable {
 		int		longitude;
 		int		flag;
 
-		weather = this.weatherTower.getCurrentWeather(this.coordinates);
+		weather = this.weatherTower.getWeather(this.coordinates);
 		height = this.coordinates.getHeight();
 		latitude = this.coordinates.getLatitude();
 		longitude = this.coordinates.getLongitude();

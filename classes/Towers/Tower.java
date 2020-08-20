@@ -1,23 +1,31 @@
 package towers;
 
+//First Party Packages
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Iterator;
+
+//Third Party Packages
+
+//Local Packages
 import flyable.Flyable;
 
 public class Tower {
-	private List<Object>	observers;
+	private List<Flyable> observers = new LinkedList<Flyable>();
 
-	observers = new LinkedList<Object>();
-
-	public register(Flyable flyable) {
+	public void register(Flyable flyable) {
 		observers.add(flyable);
 	}
 
-	public unregister(Flyable flyable) {
+	public void unregister(Flyable flyable) {
 		observers.remove(flyable);
 	}
 
-	protected conditionsChanged() {
-		for (Iterator observer = observers.iterator(); observer.hasNext();) {
-			observer.updateConditions();
+	protected void conditionsChanged() {
+		int	i;
+		
+		for (i = 0; i < observers.size(); i++) {
+			observers.get(i).updateConditions();
 		}
 		System.out.println("CONDITONS CHANGED");
 	}

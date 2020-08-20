@@ -1,7 +1,5 @@
 package aircraft;
 
-import coordinates.Coordinates;
-
 public class Aircraft {
 	private static long		idCounter = 0;
 
