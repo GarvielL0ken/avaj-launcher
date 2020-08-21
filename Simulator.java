@@ -12,9 +12,10 @@ class Simulator {
 	private static AircraftFactory	aircraftFactory;
 	private static WeatherTower		weatherTower = new WeatherTower();
 
-	private String	args[];
-	private File	inputFile;
-	private int		number_of_iterations;
+	private String		args[];
+	private File		inputFile;
+	private File		outputFile;
+	private int			number_of_iterations;
 
 	private String	parameters[];
 	private int		height;
@@ -44,7 +45,17 @@ class Simulator {
 		}
 	}
 
-	public void open_file() {
+	public void create_output_file() {
+		try {
+			this.outputFile = new File("simulation.txt");
+			this.outputFile.createNewFile();
+		} catch (IOException error) {
+			System.out.println("Error: ");
+			error.printStackTrace();
+		}
+	}
+
+	public void open_input_file() {
 		this.inputFile = new File(args[0]);
 		if (!(this.inputFile.exists())) {
 			System.out.println("Error : File does not exist");
@@ -118,7 +129,6 @@ class Simulator {
 			System.out.println("      : Use -help for more info.");
 			System.exit(1);
 		}
-		System.out.println(line);
 	}
 
 	private void new_aircraft() {
@@ -135,14 +145,25 @@ class Simulator {
 		}
 	}
 
+	private void close_files() {
+		try {
+			this.weatherTower.fileWriter.close();
+		} catch (IOException error) {
+			System.out.println("Error: ");
+			error.printStackTrace();
+		}
+	}
+
 	public static void main(String args[]) {
 		Simulator simulator = new Simulator(args);
+		
 
 		simulator.validate_arguments();
 		simulator.parse_arguments();
-		simulator.open_file();
+		simulator.open_input_file();
+		simulator.create_output_file();
 		simulator.read_file();
 		simulator.run();
-		//Run the simulation
+		simulator.close_files();
 	}
 }
